@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+<script>
+  /*
+*
+* 2. getSingle
+下面是一个单例模式的例子，在第三部分设计模式的学习中，我们将进行更深入的讲解，这
+里暂且只了解其代码实现
+* */
+  var getSingle = function (fn) {
+    var res;
+    return function () {
+      return res || (res = fn.apply(this, arguments))
+    }
+  }
+
+  var getScript = getSingle(function () {
+    return document.createElement('script')
+  })
+
+  var script1 = getScript()
+  var script2 = getScript()
+  console.log(script1 == script2);
+</script>
+</body>
+</html>
