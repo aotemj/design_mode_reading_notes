@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+    回调函数的应用不仅只在异步请求中，当一个函数不适合执行一些请求时，我们也可以把这
+    些请求封装成一个函数，并把它作为参数传递给另外一个函数，“委托”给另外一个函数来执行。
+    比如，我们想在页面中创建 100 个 div 节点，然后把这些 div 节点都设置为隐藏。下面是一种编写代码的方式
+*/
+    // var appendDiv = function () {
+    //     for (let i = 0; i < 100; i++) {
+    //         var div = document.createElement('div')
+    //         div.innerHTML = i
+    //         document.body.appendChild(div)
+    //         div.style.display = 'none'
+    //     }
+    // }
+
+
+    /*把 div.style.display = 'none'的逻辑硬编码在 appendDiv 里显然是不合理的，appendDiv 未免
+    有点个性化，成为了一个难以复用的函数，并不是每个人创建了节点之后就希望它们立刻被隐藏。
+于是我们把 div.style.display = 'none'这行代码抽出来，用回调函数的形式传入 appendDiv
+    方法：*/
+    var appendDiv = function (callback) {
+        for (let i = 0; i < 100; i++) {
+            var div = document.createElement('div')
+            div.innerHTML = i
+            document.body.appendChild(div)
+            if (typeof callback == 'function') {
+                callback(div)
+            }
+        }
+    }
+
+    appendDiv(function (node) {
+        node.style.display = 'none'
+    })
+    /*可以看到，隐藏节点的请求实际上是由客户发起的，但是客户并不知道节点什么时候会创
+    建好，于是把隐藏节点的逻辑放在回调函数中，“委托”给 appendDiv 方法。appendDiv 方法当
+    然知道节点什么时候创建好，所以在节点创建好的时候，appendDiv 会执行之前客户传入的回
+    调函数。*/
+</script>
+</body>
+</html>
