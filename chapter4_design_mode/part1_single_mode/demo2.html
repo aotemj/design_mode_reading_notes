@@ -1,0 +1,93 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+<button id="loginBtn"> 登陆</button>
+<script>
+  // var loginlayer = (function () {
+  //   var div = document.createElement('div');
+  //   div.innerHTML = '我是登陆浮窗';
+  //   div.style.display = 'none';
+  //   document.body.appendChild(div)
+  //   return div
+  // })()
+  // document.querySelector('#loginBtn').onclick = function () {
+  //   loginlayer.style.display = 'block';
+  // }
+
+
+  // 优化
+
+  // var createLoginLayer = function () {
+  //   var div = document.createElement('div');
+  //   div.innerHTML = '我是登陆浮窗';
+  //   div.style.display = 'none';
+  //   document.body.appendChild(div)
+  //   return div
+  // }
+  // document.querySelector('#loginBtn').onclick = function () {
+  //   var loginLayer = createLoginLayer()
+  //   loginLayer.style.display = 'block'
+  // }
+
+  // 再次优化
+
+  // var createLoginLayer = (function () {
+  //   var div;
+  //   return function () {
+  //     if (!div) {
+  //       div = document.createElement('div')
+  //       div.innerHTML = '我是登陆浮窗'
+  //       div.style.display = 'none'
+  //       document.body.appendChild(div)
+  //     }
+  //     return div
+  //   }
+  // })()
+  //
+  // document.querySelector('#loginBtn').onclick = function () {
+  //   var loginLayer = createLoginLayer()
+  //   loginLayer.style.display = 'block'
+  // }
+
+  //   再次优化
+
+  // var getSingle = function (fn) {
+  //   var instance;
+  //   return function () {
+  //     return instance || (instance = fn.apply(this, arguments))
+  //   }
+  // }
+  //
+  // var createLoginLayer = function () {
+  //   var div = document.createElement('div')
+  //   div.innerHTML = '我是登陆浮窗'
+  //   div.style.display = 'none';
+  //   document.body.appendChild(div)
+  //   return div
+  // }
+  //
+  // var createSingleLoginLayer = getSingle(createLoginLayer)
+  //
+  // document.querySelector('#loginBtn').onclick = function () {
+  //   var loginLayer = createSingleLoginLayer()
+  //   loginLayer.style.display = 'block'
+  // }
+  //
+  // var createSingleIframe = getSingle(function () {
+  //   var iframe = document.createElement('iframe')
+  //   document.body.appendChild(iframe);
+  //   return iframe
+  // })
+  // document.querySelector('#loginBtn').onclick = function () {
+  //   var loginLayer = createSingleIframe()
+  //   loginLayer.src = 'http://baidu.com'
+  // }
+
+
+</script>
+</body>
+</html>
