@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+<script>
+  var targetImageSrc = 'https://image.baidu.com/search/down?tn=download&ipn=dwnl&word=download&ie=utf8&fr=result&url=https%3A%2F%2Fgimg2.baidu.com%2Fimage_search%2Fsrc%3Dhttp%253A%252F%252Fthumbs.dreamstime.com%252Fb%252F%25E8%25B0%258E%25E5%259C%25A8%25E5%25B2%25A9%25E7%259F%25B3%25E6%25B5%25B7%25E5%25B2%25B8%25E7%25BA%25BF%25EF%25BC%258C-te%25E5%25AE%2589%25E7%25BA%25B3%25E4%25B9%258C%25EF%25BC%258C%25E6%2596%25B0%25E8%25A5%25BF%25E5%2585%25B0%25E7%259A%2584%25E8%25AE%25B8%25E5%25A4%259A%25E5%25B0%2581%25E5%258D%25B0-76895996.jpg%26refer%3Dhttp%253A%252F%252Fthumbs.dreamstime.com%26app%3D2002%26size%3Df9999%2C10000%26q%3Da80%26n%3D0%26g%3D0n%26fmt%3Djpeg%3Fsec%3D1615900855%26t%3D3a63e653c490429467248e7e52a825dd&thumburl=https%3A%2F%2Fss2.bdstatic.com%2F70cFvnSh_Q1YnxGkpoWK1HF6hhy%2Fit%2Fu%3D1945871042%2C3636296188%26fm%3D26%26gp%3D0.jpg'
+
+  var loadingSrc = './loading.gif'
+  // 代理模式 demo1 （未使用代理前）
+  // var myImage = (function () {
+  //   var imgNode = document.createElement('img');
+  //   document.body.appendChild(imgNode)
+  //   return {
+  //     setSrc: function (src) {
+  //       imgNode.src = src;
+  //     }
+  //   }
+  // })()
+  // myImage.setSrc(targetImageSrc)
+
+
+  //   代理模式 demo1 优化（引入代理对象)
+  var myImage = (function () {
+    var imgNode = document.createElement('img');
+    document.body.appendChild(imgNode);
+    return {
+      setSrc: function (src) {
+        imgNode.src = src;
+      }
+    }
+  })()
+
+  var myImage = (function (){
+    var img
+  })()
+  var proxyImage = (function () {
+    var img = new Image;
+    img.onload = function () {
+      myImage.setSrc(this.src)
+    }
+    return {
+      setSrc: function (src) {
+        myImage.setSrc(loadingSrc)
+        img.src = src;
+      }
+    }
+  })()
+
+  proxyImage.setSrc(targetImageSrc)
+</script>
+</body>
+</html>
